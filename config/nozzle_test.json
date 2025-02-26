@@ -1,0 +1,46 @@
+{
+  "simulation": {
+    "particle_radius": 0.03,
+    "time_step": 0.0005,
+    "gravity": [0.0, -4.0, 0.0],
+    "bound_min": [-1.0, -3.0, -3.0],
+    "bound_max": [15.0, 3.0, 3.0],
+    "bound_damping": -0.5
+  },
+  "fluid": {
+    "name": "Test Fluid",
+    "density": 1000.0,
+    "viscosity": 0.005,
+    "surface_tension": 0.072,
+    "gas_constant": 2000.0
+  },
+  "nozzle": {
+    "type": "converging-diverging",
+    "position": [0.0, 0.0, 0.0],
+    "direction": [1.0, 0.0, 0.0],
+    "inlet_diameter": 2.0,
+    "outlet_diameter": 1.5,
+    "length": 6.0,
+    "flow_rate": 25.0,
+    "inflow_velocity": 10.0,
+    "throat_diameter": 0.5,
+    "throat_position": 0.3
+  },
+  "visualization": {
+    "show_velocity": true,
+    "show_density": true,
+    "particle_scale": 30.0,
+    "colormap": "coolwarm",
+    "update_freq": 10,
+    "pause_time": 0.005
+  },
+  "export": {
+    "export_folder": "output/nozzle_test",
+    "export_interval": 0.05
+  },
+  "control": {
+    "max_time": 3.0,
+    "max_particles": 5000,
+    "seed": 123
+  }
+}
