@@ -7,7 +7,12 @@ A Python-based fluid simulation engine for testing flow through nozzles of varyi
 - Smoothed Particle Hydrodynamics (SPH) based fluid simulation
 - Multiple nozzle geometries (cylindrical and converging-diverging)
 - Support for fluids with different viscosities and densities
-- Both 3D and 2D cross-section visualizations
+- Enhanced 2D cross-section visualization with:
+  - Flow streamlines
+  - Velocity and density color mapping
+  - Automatic particle sizing
+  - Velocity indicators
+  - Clear nozzle geometry representation
 - Data export and analysis tools
 
 ## Installation
@@ -20,10 +25,16 @@ pip install -r requirements.txt
 
 ## Quick Start
 
-Try the 2D cross-section visualization for a clearer view of fluid flow:
+Try the enhanced 2D visualization for a clearer view of fluid flow:
 
 ```bash
 python examples/cross_section_visualization.py
+```
+
+Compare how different fluids flow through the same nozzle:
+
+```bash
+python examples/viscosity_flow_comparison.py
 ```
 
 Or run a standard simulation:
@@ -37,13 +48,21 @@ python run_simulation.py
 You can customize the simulation by modifying the parameters in the config files or by passing command-line arguments:
 
 ```bash
+# Full simulation customization
 python run_simulation.py --nozzle_type converging-diverging --inlet_diameter 2.0 --outlet_diameter 1.0 --throat_diameter 0.5 --fluid_viscosity 0.01
 ```
 
-For the 2D cross-section visualization:
+For the enhanced 2D cross-section visualization:
 
 ```bash
-python examples/cross_section_visualization.py --nozzle_type converging-diverging --particle_size 3.0 --fluid oil --colormap coolwarm
+# Color particles by velocity with streamlines
+python examples/cross_section_visualization.py --nozzle_type converging-diverging --particle_size 3.0 --fluid oil --colormap coolwarm --color_by velocity
+
+# Color particles by density without streamlines
+python examples/cross_section_visualization.py --color_by density --streamlines False
+
+# Show velocity vectors
+python examples/cross_section_visualization.py --velocity_vectors
 ```
 
 ## Examples
@@ -55,7 +74,8 @@ python examples/cylindrical_nozzle.py                # Simple cylindrical nozzle
 python examples/converging_diverging_nozzle.py       # De Laval nozzle
 python examples/viscosity_comparison.py              # Compare different fluid viscosities
 python examples/config_based_simulation.py           # Load parameters from config file
-python examples/cross_section_visualization.py       # 2D cross-section visualization
+python examples/cross_section_visualization.py       # Enhanced 2D visualization
+python examples/viscosity_flow_comparison.py         # Side-by-side viscosity comparison
 ```
 
 ## Documentation
