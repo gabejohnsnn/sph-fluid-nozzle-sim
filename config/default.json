@@ -1,0 +1,46 @@
+{
+  "simulation": {
+    "particle_radius": 0.05,
+    "time_step": 0.001,
+    "gravity": [0.0, -9.81, 0.0],
+    "bound_min": [-1.0, -5.0, -5.0],
+    "bound_max": [15.0, 5.0, 5.0],
+    "bound_damping": -0.5
+  },
+  "fluid": {
+    "name": "Water",
+    "density": 1000.0,
+    "viscosity": 0.001,
+    "surface_tension": 0.072,
+    "gas_constant": 2000.0
+  },
+  "nozzle": {
+    "type": "converging-diverging",
+    "position": [0.0, 0.0, 0.0],
+    "direction": [1.0, 0.0, 0.0],
+    "inlet_diameter": 1.5,
+    "outlet_diameter": 1.0,
+    "length": 4.0,
+    "flow_rate": 15.0,
+    "inflow_velocity": 7.0,
+    "throat_diameter": 0.5,
+    "throat_position": 0.4
+  },
+  "visualization": {
+    "show_velocity": true,
+    "show_density": true,
+    "particle_scale": 50.0,
+    "colormap": "viridis",
+    "update_freq": 5,
+    "pause_time": 0.01
+  },
+  "export": {
+    "export_folder": "output",
+    "export_interval": 0.1
+  },
+  "control": {
+    "max_time": 5.0,
+    "max_particles": 2000,
+    "seed": 42
+  }
+}
