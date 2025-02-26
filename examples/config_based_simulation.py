@@ -5,6 +5,11 @@ Example that demonstrates loading simulation parameters from a configuration fil
 """
 
 import sys
+import os
+
+# Add the project root to Python's path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import time
 import argparse
 from tqdm import tqdm
