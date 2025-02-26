@@ -17,11 +17,21 @@ A Python-based fluid simulation engine for testing flow through nozzles of varyi
 
 ## Installation
 
+Clone the repository and install the package:
+
 ```bash
+# Clone the repository
 git clone https://github.com/gabejohnsnn/sph-fluid-nozzle-sim.git
 cd sph-fluid-nozzle-sim
+
+# Install the package in development mode
+pip install -e .
+
+# Or install dependencies only
 pip install -r requirements.txt
 ```
+
+If you choose to only install dependencies without installing the package, you'll need to run scripts from the project root directory.
 
 ## Quick Start
 
@@ -77,6 +87,15 @@ python examples/config_based_simulation.py           # Load parameters from conf
 python examples/cross_section_visualization.py       # Enhanced 2D visualization
 python examples/viscosity_flow_comparison.py         # Side-by-side viscosity comparison
 ```
+
+## Troubleshooting
+
+### ModuleNotFoundError: No module named 'fluid_sim'
+
+If you get this error, it means Python can't find the `fluid_sim` module. Fix it by:
+
+1. Make sure you're running the scripts from the project root directory, OR
+2. Install the package in development mode with `pip install -e .`
 
 ## Documentation
 
