@@ -53,6 +53,30 @@ Or run a standard simulation:
 python run_simulation.py
 ```
 
+## Multiple Ways to Run Examples
+
+We've provided several ways to run the examples:
+
+1. **Install as a package** (recommended):
+   ```bash
+   pip install -e .
+   python examples/cross_section_visualization.py
+   ```
+
+2. **Use the helper script**:
+   ```bash
+   python run_example.py examples/cross_section_visualization.py
+   ```
+
+3. **Run from project root**:
+   ```bash
+   # Make sure you're in the project root directory
+   cd sph-fluid-nozzle-sim
+   python examples/cross_section_visualization.py
+   ```
+
+The example scripts now include path fixing code, so they should work regardless of how you run them.
+
 ## Advanced Usage
 
 You can customize the simulation by modifying the parameters in the config files or by passing command-line arguments:
@@ -95,7 +119,8 @@ python examples/viscosity_flow_comparison.py         # Side-by-side viscosity co
 If you get this error, it means Python can't find the `fluid_sim` module. Fix it by:
 
 1. Make sure you're running the scripts from the project root directory, OR
-2. Install the package in development mode with `pip install -e .`
+2. Install the package in development mode with `pip install -e .`, OR
+3. Use the included `run_example.py` helper script
 
 ## Documentation
 
