@@ -9,7 +9,7 @@ The framework consists of several core modules:
 1. **SPH Simulation Core** (`fluid_sim/sph_core.py`): Implements the Smoothed Particle Hydrodynamics algorithm
 2. **Nozzle Geometries** (`fluid_sim/nozzle.py`): Defines nozzle shapes and handles particle emission
 3. **Fluid Properties** (`fluid_sim/fluid.py`): Manages fluid properties like viscosity and density
-4. **Visualization** (`fluid_sim/visualization.py`): Provides real-time visualization and data export
+4. **Visualization** (`fluid_sim/visualization.py`, `fluid_sim/visualization2d.py`): Provides real-time visualization and data export
 5. **Utilities** (`fluid_sim/utilities.py`): Configuration management and data analysis tools
 
 ## Running Simulations
@@ -44,6 +44,7 @@ The framework includes several example scripts:
 - `examples/converging_diverging_nozzle.py`: De Laval (converging-diverging) nozzle simulation
 - `examples/viscosity_comparison.py`: Compares flow behavior with different fluid viscosities
 - `examples/config_based_simulation.py`: Demonstrates loading parameters from a config file
+- `examples/cross_section_visualization.py`: Uses 2D cross-section visualization for clearer fluid flow visualization
 
 ## Parameter Configuration
 
@@ -98,10 +99,39 @@ radial_positions, velocities = analyzer.get_velocity_profile(x_position, radius)
 
 ## Visualization Options
 
+### 3D Visualization
+
+The default 3D visualization (`MatplotlibVisualizer`) provides a comprehensive view of the simulation:
+
 - `show_velocity`: Show velocity vectors (boolean)
 - `show_density`: Color particles by density (boolean)
 - `particle_scale`: Visual size of particles
 - `colormap`: Colormap for density visualization (e.g., 'viridis', 'coolwarm')
+
+### 2D Cross-Section Visualization
+
+For clearer visualization of fluid flow, a 2D cross-section view (`CrossSectionVisualizer`) is available:
+
+- `slice_thickness`: Thickness of the cross-section slice centered at z=0
+- `particle_scale`: Visual size of particles (smaller values recommended)
+- `velocity_scale`: Scale factor for velocity arrows
+- `show_pressure`: Option to color particles by pressure instead of density
+- `nozzle_color`: Color of the nozzle outline
+- `nozzle_alpha`: Transparency of the nozzle outline
+- `grid`: Whether to show grid lines
+
+To use the 2D cross-section visualization:
+
+```bash
+python examples/cross_section_visualization.py --nozzle_type converging-diverging --particle_size 3.0 --fluid water
+```
+
+The 2D visualization provides a clearer picture of the fluid flow by:
+1. Only showing particles within a thin slice around z=0
+2. Displaying the nozzle as a 2D profile
+3. Using smaller particles for better visualization of flow patterns
+4. Marking key features like inlet, outlet, and throat positions
+5. Optionally showing velocity vectors and pressure/density values
 
 ## Extending the Framework
 
@@ -159,6 +189,7 @@ Files will be saved in the `output` directory by default.
 - **Particles clumping**: Check the smoothing length and rest density parameters
 - **Low performance**: Reduce the number of particles or disable visualization for faster runs
 - **Visualization issues**: Try different colormaps or adjust the particle scale
+- **Flow patterns unclear**: Use the 2D cross-section visualizer with small particle sizes
 
 ## References
 
