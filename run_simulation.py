@@ -37,6 +37,12 @@ def parse_args():
                         help='Disable visualization')
     parser.add_argument('--export_data', action='store_true', 
                         help='Export simulation data')
+    parser.add_argument('--slice_axis', choices=['x', 'y', 'z'], default='z',
+                       help='Axis to slice along for visualization (default: z, which shows xy plane)')
+    parser.add_argument('--slice_thickness', type=float, default=0.3,
+                       help='Thickness of cross-section slice (default: 0.3)')
+    parser.add_argument('--color_by', choices=['velocity', 'density', 'pressure'], default='velocity',
+                       help='Property to use for particle coloring (default: velocity)')
     
     return parser.parse_args()
 
@@ -73,6 +79,16 @@ def main():
     visualizer = None
     if not args.no_visualization:
         viz_config = config.get_visualization_config()
+        
+        # Override visualization settings from command line
+        if args.slice_axis:
+            viz_config['slice_axis'] = args.slice_axis
+        if args.slice_thickness:
+            viz_config['slice_thickness'] = args.slice_thickness
+        if args.color_by:
+            viz_config['use_velocity_color'] = (args.color_by == 'velocity')
+            viz_config['show_pressure'] = (args.color_by == 'pressure')
+        
         visualizer = MatplotlibVisualizer(viz_config)
         visualizer.setup(simulation, nozzle)
     
@@ -101,7 +117,7 @@ def main():
         start_time = time.time()
         sim_steps = 0
         
-        with tqdm(total=int(max_time / sim_config['time_step']), desc="Simulating") as pbar:
+        with tqdm(total=int(max_time / sim_config['time_step'])) as pbar:
             while simulation.simulation_time < max_time and simulation.positions.shape[0] < max_particles:
                 # Emit new particles from the nozzle
                 new_positions, new_velocities = nozzle.emit_particles(simulation.simulation_time, particle_radius)
